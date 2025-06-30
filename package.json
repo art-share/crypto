@@ -1,0 +1,73 @@
+{
+  "name": "@art-share/crypto",
+  "version": "1.0.0",
+  "description": "Shared cryptographic utilities for Artshare platform - quantum-resistant password hashing",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./node": {
+      "import": "./dist/node.js",
+      "types": "./dist/node.d.ts"
+    },
+    "./browser": {
+      "import": "./dist/browser.js",
+      "types": "./dist/browser.d.ts"
+    }
+  },
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsc && npm run build:rollup",
+    "build:rollup": "rollup -c",
+    "test": "vitest",
+    "test:node": "node test/node.test.js",
+    "test:browser": "playwright test",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/art-share/crypto.git"
+  },
+  "keywords": [
+    "crypto",
+    "password",
+    "hashing",
+    "scrypt",
+    "quantum-resistant",
+    "artshare",
+    "cross-platform"
+  ],
+  "author": "Artshare Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/art-share/crypto/issues"
+  },
+  "homepage": "https://github.com/art-share/crypto#readme",
+  "dependencies": {
+    "@noble/hashes": "^1.4.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/node": "^20.0.0",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0",
+    "rollup": "^4.6.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
