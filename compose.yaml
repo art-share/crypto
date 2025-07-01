@@ -1,0 +1,30 @@
+name: artshare-crypto
+
+services:
+  # NPM command runner for library operations
+  crypto-npm:
+    image: node:20-bookworm
+    volumes:
+      - .:/app
+      - ../../.npmrc:/root/.npmrc:ro
+    working_dir: /app
+    entrypoint: npm
+    user: "${UID:-1000}:${GID:-1000}"
+    
+  # Build service
+  crypto-build:
+    extends:
+      service: crypto-npm
+    command: run build
+    
+  # Test service
+  crypto-test:
+    extends:
+      service: crypto-npm
+    command: test
+    
+  # Publish service
+  crypto-publish:
+    extends:
+      service: crypto-npm
+    command: publish
